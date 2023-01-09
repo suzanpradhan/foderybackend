@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+{% load unicorn %}
+<html lang="en">
+<head>
+
+{% load static %}
+    {% block header-css %}
+    
+        {% include 'includes/header.html' %}
+    
+    {% endblock header-css %}
+    {% unicorn_scripts %}
+
+    {% block main-scripts %}
+
+        {% include 'includes/scripts.html' %}
+    {% endblock main-scripts %}
+    
+</head>
+<body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+    
+    {% csrf_token %}
+    <div class="wrapper">
+
+    <!-- Preloader -->
+        <div class="preloader flex-column justify-content-center align-items-center">
+            <img class="animation__wobble" src="{% static 'img/AdminLTELogo.png' %}" alt="AdminLTELogo" height="60" width="60">
+        </div>
+        
+
+        {% block navbar %}
+        
+            {% include 'includes/navigation.html' %}
+        
+        {% endblock navbar %}
+
+        {% unicorn 'SideBar' %}
+
+        
+        {% block content %}
+        
+        {% endblock content %}
+
+        {% block footer %}
+            {% include 'includes/footer.html' %}
+        {% endblock footer %}
+
+    </div>
+    
+    
+
+{% block body-scripts %}
+    {% include 'includes/body-scripts.html' %}
+{% endblock body-scripts %}
+
+{% block end-scripts %}
+
+{% endblock end-scripts%}
+
+</body>
+</html>

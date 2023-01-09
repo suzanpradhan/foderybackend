@@ -1,0 +1,116 @@
+{% extends 'index.html' %} {% block content %}
+
+<div class="content-wrapper">
+  <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1 class="m-0">Add User</h1>
+        </div>
+        <!-- /.col -->
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="#">user</a></li>
+            <li class="breadcrumb-item active">add</li>
+          </ol>
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+  </div>
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-8">
+
+          <div class="card card-primary">
+
+            <!-- /.card-header -->
+            <!-- form start -->
+            <form action="{% url 'user-update' id=data.id %}" method="POST">
+              {% csrf_token %}
+              <div class="card-body">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">First Name</label>
+                  <input type="text" class="form-control" name="fname" placeholder="Enter first name"
+                    value='{{data.fname}}'>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Last Name</label>
+                  <input type="text" class="form-control" name="lname" placeholder="Enter last name"
+                    value='{{data.lname}}'>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Email address</label>
+                  <input type="email" class="form-control" name="email" placeholder="Enter email"
+                    value='{{user.email}}'>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Username</label>
+                  <input type="text" class="form-control" name="username" placeholder="Enter Username "
+                    value='{{user.username}}'>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputPassword1">Password</label>
+                  <input type="password" class="form-control" name="password" placeholder="Password"
+                    value='{{user.password}}'>
+                </div>
+
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Phone</label>
+                  <input type="text" class="form-control" name="phone" placeholder="Enter Phone" value='{{data.phone}}'>
+                </div>
+              </div>
+          </div>
+        </div>
+
+
+          <div class="col-4">
+            <div class="card">
+              <div class="card-header">Role</div>
+              <div class="card-body">
+                <div class="form-group">
+                  <label>Role</label>
+                  <select class="form-control" name='groups' id='groups'>
+                    <option value='su_admin'>Admin</option>
+                    <option value='manager'>Store Manager</option>
+                    <option value='staff'>Staff</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+
+
+          <!-- /.card-body -->
+        </div>
+        <div class="card-footer">
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+        </form>
+      </div>
+  </section>
+</div>
+
+
+<script>
+var temp = '{{group}}';
+var mySelect = document.getElementById('groups');
+
+window.onload = (event) => {
+  
+  for(var i, j = 0; i = mySelect.options[j]; j++) {
+    if(i.value == temp) {
+        mySelect.selectedIndex = j;
+        break;
+    }
+}
+};
+
+</script>
+
+{% endblock content %}

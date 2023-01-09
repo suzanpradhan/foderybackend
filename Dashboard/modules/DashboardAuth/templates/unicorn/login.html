@@ -1,0 +1,55 @@
+<div>
+    <div class="login-box">
+        <!-- /.login-logo -->
+        <div class="card">
+          <div class="card-header text-center">
+            <a href="../../index2.html" class="h1 text-primary"><b>Sweed Admin</a>
+          </div>
+          <div class="card-body">
+              <div class="input-group mb-3">
+                <input type="email" class="form-control" placeholder="Email" name='email' unicorn:model="email">
+                <div class="input-group-append">
+                  <div class="input-group-text">
+                    <span class="fas fa-envelope"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="input-group mb-3">
+                <input type="password" class="form-control" placeholder="Password" name='password' unicorn:model="password">
+                <div class="input-group-append">
+                  <div class="input-group-text">
+                    <span class="fas fa-lock"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-8">
+                  {% comment %} <p class="mb-1"> {% endcomment %}
+                    <a href="">I forgot my password</a>
+                  {% comment %} </p> {% endcomment %}
+                </div>
+                <!-- /.col -->
+                <div class="col-4">
+                  <button class="btn btn-primary btn-block" unicorn:click="login_submit">Sign In</button>
+                </div>
+                <!-- /.col -->
+              </div>
+            <!-- /.social-auth-links -->
+          </div>
+          <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+
+    </div>
+
+    {% block body-scripts %}
+      {% include 'includes/body-scripts.html' %}
+    {% endblock body-scripts %}
+
+    <script>
+      function fireError(message){
+        toastr.error(message);
+      }
+    </script>
+
+</div>

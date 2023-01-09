@@ -1,0 +1,327 @@
+{% extends 'index.html' %} {% block content %}
+
+<div class="content-wrapper">
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0">Coupons</h1>
+                </div>
+                <!-- /.col -->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">settings</a></li>
+                        <li class="breadcrumb-item active">coupon</li>
+                    </ol>
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+    </div>
+    <section class="content">
+
+
+        <div class="container-fluid">
+            <form action="{% url 'coupon-add' %}" method="POST">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="card card-primary">
+                            <!-- /.card-header -->
+                            <!-- form start -->
+                            <div class="card-header">
+                                <div class="card-title">General</div>
+                                <div class="card-tools">
+                                    <button type="button" class="btn btn-tool" data-card-widget="collapse"
+                                        title="Collapse">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label for="title">Code</label>
+                                    <input type="text" class="form-control" id="code" name="code"
+                                        placeholder="Enter Code" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputDescription">Description</label>
+                                    <textarea id="inputDescription" name="description" class="form-control" rows="4"
+                                        placeholder="Enter Description"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label>Expries At:</label>
+                                    <div class="input-group date" id="reservationdate" data-target-input="nearest">
+                                        <input type="text" class="form-control datetimepicker-input"
+                                            data-target="#reservationdate">
+                                        <div class="input-group-append" data-target="#reservationdate"
+                                            data-toggle="datetimepicker">
+                                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-3">
+                        <div class="col-md-12">
+                            <div class="card card-primary">
+                                <!-- /.card-header -->
+                                <!-- form start -->
+                                <div class="card-header">
+                                    <div class="card-title">Discount</div>
+                                    <div class="card-tools">
+                                        <button type="button" class="btn btn-tool" data-card-widget="collapse"
+                                            title="Collapse">
+                                            <i class="fas fa-minus"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="card-body">
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="inputDescription">Amount</label>
+                                                <input type="text" class="form-control" id="discount" name="discount" />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="category">Unit</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <select class="form-control" name="unit">
+                                                <option value=1>Percent</option>
+                                                <option value=2>Number</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <br>
+
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="card card-primary">
+                                <!-- /.card-header -->
+                                <!-- form start -->
+                                <div class="card-header">
+                                    <div class="card-title">Toggles</div>
+                                    <div class="card-tools">
+                                        <button type="button" class="btn btn-tool" data-card-widget="collapse"
+                                            title="Collapse">
+                                            <i class="fas fa-minus"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="card-body">
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label for="category">Status</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <select class="form-control" name="status">
+                                                <option value="True">True</option>
+                                                <option value="False">False</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <br>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </form>
+
+            <div class="div">
+                <div class="card card-primary">
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <div class="card-header">
+                        <div class="card-title">All Coupons</div>
+                        <div class="card-tools">
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="card-body">
+
+                        <div class="row">
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label for="title">Code</label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label for="title">Discount</label>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label for="title">Unit</label>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label for="title">Expries</label>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label for="title">Status</label>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label for="title">Action</label>
+                                </div>
+                            </div>
+                        </div>
+                        {% for coupon in data%}
+                        <form action="{% url 'coupon-update' id=coupon.id %}" method="POST">
+                            {% csrf_token %}
+
+
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="code" name="code"
+                                            value="{{coupon.code}}" />
+                                    </div>
+                                </div>
+
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="discount" name="discount"
+                                            value="{{coupon.discount}}" />
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <select class="form-control" name="unit">
+                                            <option value=1 {% if coupon.unitType == 1 %}selected{% endif %}>Percent
+                                            </option>
+                                            <option value=2 {% if coupon.unitType == 2 %}selected{% endif %}>Number
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        {{coupon.expiresAt}}
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <select class="form-control" name="status">
+                                            <option value="True" {% if coupon.status%}selected{% endif %}>True</option>
+                                            <option value="False"  {% if coupon.status == False %}selected{% endif %} >False</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        {% comment %} <a href="{% url 'faq-update' id=faq.id %}"> {% endcomment %}
+                                            <button type="submit" class="btn btn-sm btn-primary">
+
+                                                <i class="fas fa-edit"></i>&nbspSave
+                                            </button></a>
+                                        <a href="{% url 'coupon-delete' id=coupon.id %}">
+                                            <button type="button" class="btn btn-sm btn-danger">
+                                                <i class="fas"></i>&nbspDelete
+                                            </button></a>
+                                    </div>
+                                </div>
+                        </form>
+                    </div>
+
+                    {% endfor %}
+
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+</div>
+
+{% endblock content %}
+
+{% block end-scripts %}
+<script>
+    $(function () {
+
+
+
+
+        //Date picker
+        $('#reservationdate').datetimepicker({
+            format: 'L'
+        });
+
+        //Date and time picker
+        $('#reservationdatetime').datetimepicker({ icons: { time: 'far fa-clock' } });
+
+        //Date range picker
+        $('#reservation').daterangepicker()
+        //Date range picker with time picker
+        $('#reservationtime').daterangepicker({
+            timePicker: true,
+            timePickerIncrement: 30,
+            locale: {
+                format: 'MM/DD/YYYY hh:mm A'
+            }
+        })
+        //Date range as a button
+        $('#daterange-btn').daterangepicker(
+            {
+                ranges: {
+                    'Today': [moment(), moment()],
+                    'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                    'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                    'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                    'This Month': [moment().startOf('month'), moment().endOf('month')],
+                    'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                },
+                startDate: moment().subtract(29, 'days'),
+                endDate: moment()
+            },
+            function (start, end) {
+                $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
+            }
+        )
+
+        //Timepicker
+        $('#timepicker').datetimepicker({
+            format: 'LT'
+        })
+
+    })
+
+
+
+
+</script>
+
+{% endblock end-scripts %}

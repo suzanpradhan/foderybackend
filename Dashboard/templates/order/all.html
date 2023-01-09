@@ -1,0 +1,170 @@
+{% extends 'index.html' %} {% block content %}
+
+<div class="content-wrapper">
+  <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1 class="m-0">All Order</h1>
+        </div>
+        <!-- /.col -->
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="#">order</a></li>
+            <li class="breadcrumb-item active">all</li>
+          </ol>
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+  </div>
+
+  <section class="content">
+    <div class="container-fluid">
+      <div class="col-12">
+        <div class="card card-primary card-tabs">
+          <div class="card-header p-0 pt-1">
+            <ul class="nav nav-tabs" id="custom-tabs-one-tab" role="tablist">
+              <li class="nav-item">
+                <a class="nav-link active" id="custom-tabs-one-profile-tab" data-toggle="pill" href="#custom-tabs-one-profile"
+                  role="tab" aria-controls="custom-tabs-one-profile" aria-selected="false">Pending</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="custom-tabs-one-home-tab" data-toggle="pill" href="#custom-tabs-one-home"
+                  role="tab" aria-controls="custom-tabs-one-home" aria-selected="true">All</a>
+              </li>
+             
+
+            </ul>
+          </div>
+          <div class="card-body">
+            <div class="tab-content" id="custom-tabs-one-tabContent">
+              <div class="tab-pane fade show active" id="custom-tabs-one-profile" role="tabpanel"
+                aria-labelledby="custom-tabs-one-profile-tab">
+                <table class="table table-hover table-head-fixed text-nowrap">
+                  <thead>
+                    <tr>
+                      <th>Order Number</th>
+                      <th>User</th>
+                      <th>Status</th>
+                      <th>Address</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for obj in data1 %}
+                    <tr>
+                      <td>#{{ obj.order_number }}</td>
+                      <td>{{ obj.user.profile_full_name }}<br> {{obj.user.email}}</td>
+                      <td>
+                        {% if obj.status == 1 %}
+                        Pending
+                        {% elif obj.status == 2 %}
+                        Preparing
+                        {% elif obj.status == 3 %}
+                        Delivering
+                        {% elif obj.status == 4 %}
+                        Delivered
+                        {% endif %}
+                      </td>
+                      <td>
+                        {% if obj.DeliveryAddress%}
+                          {{obj.DeliveryAddress.fname}} {{obj.DeliveryAddress.lname}}<br>
+                          {{obj.DeliveryAddress.phone}}<br>
+                          {{obj.DeliveryAddress.streetAdd1}}<br>
+                          {% if obj.DeliveryAddress.streetAdd2 %}
+                          {{obj.DeliveryAddress.streetAdd2}}<br>
+                          {% endif %}
+                          {{obj.DeliveryAddress.zipCode}}<br>
+                        {% endif %}
+                        
+                      </td>
+                      <td>
+                        <a href="{% url 'order-update' id=obj.id %}"><button type="button"
+                            class="btn btn-sm btn-primary">
+                            <i class="fas fa-edit"></i>&nbspView
+                          </button></a>
+                        <a href="{% url 'order-delete' id=obj.id %}"><button type="button"
+                            class="btn btn-sm btn-danger">
+                            <i class="fas"></i>&nbspDelete
+                          </button></a>
+                      </td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+              <div class="tab-pane fade" id="custom-tabs-one-home" role="tabpanel"
+                aria-labelledby="custom-tabs-one-home-tab">
+                <table class="table table-hover table-head-fixed text-nowrap">
+                  <thead>
+                    <tr>
+                      <th>Order Number</th>
+                      <th>User</th>
+                      <th>Status</th>
+                      <th>Address</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for obj in data %}
+                    <tr>
+                      <td>#{{ obj.order_number }}</td>
+                      <td>{{ obj.user.profile_full_name }}<br> {{obj.user.email}}</td>
+                      <td>
+                        {% if obj.status == 1 %}
+                        Pending
+                        {% elif obj.status == 2 %}
+                        Preparing
+                        {% elif obj.status == 3 %}
+                        Delivering
+                        {% elif obj.status == 4 %}
+                        Delivered
+                        {% endif %}
+                      </td>
+                      <td>
+                        {% if obj.DeliveryAddress%}
+                          {{obj.DeliveryAddress.fname}} {{obj.DeliveryAddress.lname}}<br>
+                          {{obj.DeliveryAddress.phone}}<br>
+                          {{obj.DeliveryAddress.streetAdd1}}<br>
+                          {% if obj.DeliveryAddress.streetAdd2 %}
+                          {{obj.DeliveryAddress.streetAdd2}}<br>
+                          {% endif %}
+                          {{obj.DeliveryAddress.zipCode}}<br>
+                        {% endif %}
+                        
+                      </td>
+                      <td>
+                        <a href="{% url 'order-update' id=obj.id %}"><button type="button"
+                            class="btn btn-sm btn-primary">
+                            <i class="fas fa-edit"></i>&nbspView
+                          </button></a>
+                        <a href="{% url 'order-delete' id=obj.id %}"><button type="button"
+                            class="btn btn-sm btn-danger">
+                            <i class="fas"></i>&nbspDelete
+                          </button></a>
+                      </td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+              
+
+
+            </div>
+          </div> 
+          <!-- /.card -->
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</div>
+
+
+
+{% endblock content %}

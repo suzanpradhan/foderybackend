@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+{% load unicorn %}
+
+<html lang="en">
+<head>
+  
+  {% load static %}
+
+    {% block header-css %}
+    
+        {% include 'includes/header.html' %}
+    
+    {% endblock header-css %}
+    {% unicorn_scripts %}
+
+    {% block main-scripts %}
+
+        {% include 'includes/scripts.html' %}
+    {% endblock main-scripts %}
+    
+</head>
+<body class="hold-transition login-page">
+    {% csrf_token %}
+    {% unicorn 'login'%}
+    <!-- /.login-box -->
+
+</body>
+</html>

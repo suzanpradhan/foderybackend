@@ -1,0 +1,308 @@
+<div>
+    <section class="content">
+        <form action="{% url 'product-add' %}" method="POST">
+            {% csrf_token %}
+
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="card card-primary">
+                            <!-- /.card-header -->
+                            <!-- form start -->
+                            <div class="card-header">
+                                <div class="card-title">General</div>
+                                <div class="card-tools">
+                                    <button type="button" class="btn btn-tool" data-card-widget="collapse"
+                                        title="Collapse">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="title">Title</label>
+                                            <input type="text" class="form-control" id="title" name="title"
+                                                placeholder="Enter Title" unicorn:model="title" unicorn:keyup="generate_slug()"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="slug">Slug</label>
+                                            <input type="text" class="form-control" id="slug" name="slug"
+                                                placeholder="Auto Generated Slug" disabled unicorn:model="slug" />
+                                        </div> 
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputDescription">Description</label>
+                                    <textarea id="inputDescription" name="description" class="form-control" rows="4"
+                                        placeholder="Enter Description"></textarea>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="newPrice">Price</label>
+                                            <input type="number" class="form-control" id="newPrice" name="newPrice"
+                                                placeholder="Enter New Price" max="10000" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="weight">Weight</label>
+                                            <input type="number" class="form-control" id="weight" name="weight"
+                                                placeholder="Enter Weight in Grams(g)" max="10000" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="packageCount">Package Count</label>
+                                            <input type="number" id="packageCount" name="packageCount" class="form-control"
+                                                max="100" placeholder="Enter Count" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Category</label>
+                                            <select class="form-control select2" style="width: 100%;">
+                                                <option value="" selected="selected">Select a category</option>
+                                                {% if productCategories %}
+                                                    {% for productCategory in productCategories %}
+                                                        <option value="{{ productCategory.id }}">{{ productCategory.title }}</option>
+                                                    {% endfor %}
+                                                {% endif %}
+                                            </select>
+                                        </div>
+                                        <!-- <div class="form-group">
+                                            <label for="category">Category</label>
+                                            <input type="text" id="category" name="category" class="form-control"
+                                                max="100" placeholder="Enter Count" />
+                                        </div> -->
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        <div class="card card-primary">
+                            <!-- /.card-header -->
+                            <!-- form start -->
+                            <div class="card-header">
+                                <div class="card-title">Product Variant Attributes Fields</div>
+                                <div class="card-tools">
+                                    <button type="button" class="btn btn-sm btn-default" data-toggle="modal" data-target="#variantNameModel">
+                                        + Add Attribute Name
+                                    </button>
+                                    <button type="button" unicorn:click="$refresh">
+                                        Refresh
+                                    </button>
+                                    <button type="button" class="btn btn-tool" data-card-widget="collapse"
+                                        title="Collapse">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-group" >
+                                    <label>Variant Attributes</label>
+                                    <input id="variantAttributeInput" type="text" unicorn:model="selectedVariantAttributes" unicorn:key="selectedVariantAttributesKey">
+                                    <select id="variantAttributeSelect2" class="select2" multiple="multiple" data-placeholder="Select multiple attributes" style="width: 100%;"unicorn:click="$refresh">
+                                        {% if variantAttributes %}
+                                            {% for variantAttribute in variantAttributes %}
+                                                <option value="{{ variantAttribute.id }}">{{ variantAttribute.title }}</option>
+                                            {% endfor %}
+                                        {% endif %}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                {% for selectedVariantAttribute in selectedVariantAttributes %}
+                                    {{selectedVariantAttribute}}
+                                {% endfor %}
+                                Choose attributes to differ product variants.
+                              </div>
+                        </div>
+                        <div class="card card-primary">
+                            <!-- /.card-header -->
+                            <!-- form start -->
+                            <div class="card-header">
+                                <div class="card-title">Varients</div>
+                                <div class="card-tools">
+                                    <button type="button" class="btn btn-sm btn-default">
+                                        + Add Variant
+                                     </button>
+                                    <button type="button" class="btn btn-tool" data-card-widget="collapse"
+                                        title="Collapse">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <p>sldhg</p>
+                            </div>
+                        </div>
+                        <div class="card card-primary">
+                            <!-- /.card-header -->
+                            <!-- form start -->
+                            <div class="card-header">
+                                <div class="card-title">Nutrition</div>
+                                <div class="card-tools">
+                                    <button type="button" class="btn btn-tool" data-card-widget="collapse"
+                                        title="Collapse">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="card-body">
+                                <div class="row">
+                                    {% for nut in nutritions %}
+                                    <div class="form-group col-md-4">
+                                        <input type="checkbox" id="nut" name="nut" value="{{nut.id}}" />
+                                        <label for="nut"> {{nut.title}}</label><br />
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card card-primary">
+                            <!-- /.card-header -->
+                            <!-- form start -->
+                            <div class="card-header">
+                                <div class="card-title">Extra</div>
+                                <div class="card-tools">
+                                    <button type="button" class="btn btn-tool" data-card-widget="collapse"
+                                        title="Collapse">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="card-body">
+                                <div class="row">
+                                    {% for extra in extras %}
+                                    <div class="form-group col-md-4">
+                                        <input type="checkbox" id="extra" name="extra" value="{{extra.id}}" />
+                                        <label for="extra"> {{extra.title}}</label><br>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-md-4">
+                        <div class="col-md-12">
+                            <div class="card card-primary">
+                                <!-- /.card-header -->
+                                <!-- form start -->
+                                <div class="card-header">
+                                    <div class="card-title">Toggles</div>
+                                    <div class="card-tools">
+                                        <button type="button" class="btn btn-tool" data-card-widget="collapse"
+                                            title="Collapse">
+                                            <i class="fas fa-minus"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label for="status">Status</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <select class="form-control" name="status" id="status">
+                                                <option value="True">True</option>
+                                                <option value="False">False</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label for="isFeatured">Featured</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <select class="form-control" name="isFeatured" id="featured">
+                                                <option value="True">True</option>
+                                                <option value="False">False</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label for="isDeliverable">Deliverable</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <select class="form-control" name="isDeliverable" id="deliverable">
+                                                <option value="True">True</option>
+                                                <option value="False">False</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card card-primary">
+                                <!-- /.card-header -->
+                                <!-- form start -->
+                                <div class="card-header">
+                                    <div class="card-title">Attributes</div>
+                                    <div class="card-tools">
+                                        <button type="button" class="btn btn-tool" data-card-widget="collapse"
+                                            title="Collapse">
+                                            <i class="fas fa-minus"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="card-body">
+                                    <div class="row">
+                                        <label>Item Category</label>
+                                        <select class="form-control" name="category" id="category">
+                                            {% for cat in itemcat%}
+                                            <option value="{{cat.id}}">{{cat.title}}</option>
+                                            {%endfor%}
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </section>
+
+    // Variant Name Add Model
+    <div class="modal fade" id="variantNameModel" unicorn:ignore>
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Add New Variant Attribute Name</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="attributeNameInput">Attribute Name</label>
+                    <input type="text" class="form-control" id="attributeNameInput" name="attributeNameInput" placeholder="eg. Type" unicorn:model="attributeNameInput" />
+                </div>
+            </div>
+            <div class="modal-footer justify-content-between">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" unicorn:click="addAttributeNameInput()">Save changes</button>
+            </div>
+          </div>
+        </div>
+    </div>
+
+
+
+</div>

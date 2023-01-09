@@ -1,0 +1,124 @@
+<div>
+    {% load static %}
+    <div class="row">
+        <div class="col-lg-3 col-6">
+          <!-- small card -->
+          <div class="small-box bg-info">
+            <div class="inner">
+              <h3>{{ newOrdersCount }}</h3>
+
+              <p>New Orders</p>
+            </div>
+            <div class="icon">
+              <i class="fas fa-shopping-cart"></i>
+            </div>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-6">
+          <!-- small card -->
+          <div class="small-box bg-success">
+            <div class="inner">
+              <h3>{{ newReviewsCount }}</h3>
+
+              <p>New Reviews</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-stats-bars"></i>
+            </div>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-6">
+          <!-- small card -->
+          <div class="small-box bg-warning">
+            <div class="inner">
+              <h3>{{ newUsersCount }}</h3>
+
+              <p>User Registrations</p>
+            </div>
+            <div class="icon">
+              <i class="fas fa-user-plus"></i>
+            </div>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-6">
+          <!-- small card -->
+          <div class="small-box bg-danger">
+            <div class="inner">
+              <h3>Rs. {{ todaysSales }}</h3>
+
+              <p>Today's Sales</p>
+            </div>
+            <div class="icon">
+              <i class="fas fa-dollar-sign"></i>
+            </div>
+          </div>
+        </div>
+        <!-- ./col -->
+    </div>
+    <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">
+                Server Status
+              </h3>
+
+              <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                  <i class="fas fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-tool" data-card-widget="remove">
+                  <i class="fas fa-times"></i>
+                </button>
+              </div>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+                
+                <div class="row">
+                    <div class="col-6 col-md-3 text-center">
+                    <input type="text" class="knob" value="{{ cpuUsage.0 }}" data-skin="tron" data-thickness="0.2" data-width="120"
+                            data-height="120" data-fgColor="{{ cpuUsage.1 }}" data-readonly="true">
+
+                    <div class="knob-label">CPU Usage</div>
+                    </div>
+                    <!-- ./col -->
+                    <div class="col-6 col-md-3 text-center">
+                        <div unicorn:poll-1000="get_ram_usage">
+                            <input type="text" class="knob" value="{{ ramUsage.0 }}" data-skin="tron" data-thickness="0.2" data-width="120"
+                                data-height="120" data-fgColor="{{ ramUsage.1 }}" data-readonly="true">
+                        </div>
+
+                    <div class="knob-label">Ram Usage</div>
+                    </div>
+                    <!-- ./col -->
+                    <div class="col-6 col-md-3 text-center">
+                        <input type="text" class="knob" value="{{ diskUsage.0 }}" data-skin="tron" data-thickness="0.2" data-width="120"
+                            data-height="120" data-fgColor="{{ diskUsage.1 }}" data-readonly="true">
+    
+                        <div class="knob-label">Disk Usage</div>
+                    </div>
+                    <!-- ./col -->
+                    <div class="col-6 col-md-3 text-center">
+                    <input type="text" class="knob" value="100" data-skin="tron" data-thickness="0.2"
+                            data-angleArc="250" data-angleOffset="-125" data-width="120" data-height="120"
+                            data-fgColor="#00c0ef">
+
+                    <div class="knob-label">data-angleArc="250"</div>
+                    </div>
+                    <!-- ./col -->
+                </div>
+              <!-- /.row -->
+            </div>
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
+        </div>
+        <!-- /.col -->
+      </div>
+
+    
+</div>

@@ -1,0 +1,156 @@
+{% extends 'index.html' %} {% block content %}
+
+<div class="content-wrapper">
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0">Add Product</h1>
+                </div>
+                <!-- /.col -->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">product</a></li>
+                        <li class="breadcrumb-item active">add</li>
+                    </ol>
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+    </div>
+    <section class="content">
+        <form action="{% url 'collection-add' %}" method="POST">
+            {% csrf_token %}
+
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="card card-primary">
+                            <!-- /.card-header -->
+                            <!-- form start -->
+                            <div class="card-header">
+                                <div class="card-title">General</div>
+                                <div class="card-tools">
+                                    <button type="button" class="btn btn-tool" data-card-widget="collapse"
+                                        title="Collapse">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label for="title">Title</label>
+                                    <input type="text" class="form-control" id="title" name="title"
+                                        placeholder="Enter Title" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputDescription">Description</label>
+                                    <textarea id="inputDescription" name="description" class="form-control" rows="4"
+                                        placeholder="Enter Description"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card card-primary">
+                            <!-- /.card-header -->
+                            <!-- form start -->
+                            <div class="card-header">
+                                <div class="card-title">Foods</div>
+                                <div class="card-tools">
+                                    <button type="button" class="btn btn-tool" data-card-widget="collapse"
+                                        title="Collapse">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="card-body">
+                                <div class="row">
+
+                                {% for food in foods %}
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                    <div class="card mb-2 bg-gradient-dark">
+                                        <div class="card-header">
+                                            <div class="card-title">
+                                                <div style=' text-align: center;'>
+                                                    <h6>
+                                                        {{food.title}}
+                                                    </h6>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                            <img class="card-img-top" src="{{food.coverImage.file.url}}" />
+
+
+                                    </div>
+                                    
+
+                                </div>
+                                {% endfor %}
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+
+                        <div class="col-md-3">
+                            <div class="col-md-12">
+                                <div class="card card-primary">
+                                    <!-- /.card-header -->
+                                    <!-- form start -->
+                                    <div class="card-header">
+                                        <div class="card-title">Toggles</div>
+                                        <div class="card-tools">
+                                            <button type="button" class="btn btn-tool" data-card-widget="collapse"
+                                                title="Collapse">
+                                                <i class="fas fa-minus"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label for="status">Status</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <select class="form-control" name="status" id="status">
+                                                    <option value="True">True</option>
+                                                    <option value="False">False</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label for="isFeatured">Featured</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <select class="form-control" name="isFeatured" id="featured">
+                                                    <option value="True">True</option>
+                                                    <option value="False">False</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <br >
+                                        
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                </div>
+                
+            </div>
+        </form>
+    </section>
+</div>
+
+
+{% endblock content %}

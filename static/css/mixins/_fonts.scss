@@ -1,0 +1,19 @@
+$default-line-height: 1.5 !default;
+$default-font-smoothing: subpixel-antialiased !default;
+
+// Function to convert pixels to rems
+
+@function px-to-rem($size) {
+    @return ($size / 10) + rem;
+}
+
+// Mixin
+
+@mixin font-size($fs: false, $lh: $default-line-height, $sm: $default-font-smoothing ) {
+   @if $fs {
+        font-size: $fs  + px;
+        font-size: px-to-rem($fs);
+    }
+    @if $lh { line-height: $lh; }
+    @if $sm { -webkit-font-smoothing: $sm; }
+}

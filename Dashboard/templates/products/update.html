@@ -1,0 +1,298 @@
+{% extends 'index.html' %}
+{% load unicorn %}
+{% unicorn 'add-nutrition' uni_nutrition=uni_nutrition %}
+{% block content %}
+
+<div class="content-wrapper">
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0">Add Product</h1>
+                </div>
+                <!-- /.col -->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">product</a></li>
+                        <li class="breadcrumb-item active">add</li>
+                    </ol>
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+    </div>
+    <section class="content">
+        <form action="{% url 'product-update' id=data.id %}" method="POST">
+            {% csrf_token %}
+
+            <div class="container-fluid">
+                <div class="row">
+
+                    <div class="col-md-8">
+                        <div class="card card-primary">
+                            <!-- /.card-header -->
+                            <!-- form start -->
+                            <div class="card-header">
+                                <div class="card-title">General</div>
+                                <div class="card-tools">
+                                    <button type="button" class="btn btn-tool" data-card-widget="collapse"
+                                        title="Collapse">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="card-body ">
+
+                                <div class="form-group">
+                                    <label for="title">Title</label>
+                                    <input type="text" class="form-control" id="title" name="title"
+                                        value="{{data.title}}" placeholder="Enter Title" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputDescription">Description</label>
+                                    <textarea id="inputDescription" name='description' value="{{data.description}}"
+                                        class="form-control" rows="4" placeholder="Enter Description"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="price"><strike>Price</strike></label>
+                                    <input type="number" class="form-control" id="price" value="{{data.value}}"
+                                        name="price" placeholder="Enter Price" max="10000" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="newPrice">New Price</label>
+                                    <input type="number" class="form-control" id="newPrice" name="newPrice"
+                                        value="{{data.newPrice}}" placeholder="Enter New Price" max="10000" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="weight">Weight</label>
+                                    <input type="number" class="form-control" id="weight" name="weight"
+                                        value="{{data.weight}}" placeholder="Enter Weight in Grams(g)" max="10000" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputDescription">Package Count</label>
+                                    <input type="number" id="inputDescription" name='packageCount' class="form-control"
+                                        value="{{data.packageCount}}" max="100" placeholder="Enter Count">
+                                </div>
+                                <div class="form-group">
+                                    <label for="rangeInput">Rating</label>
+                                    <script
+                                        src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+                                    <input type="range" id="rangeInput" name="avgRating" step="1" min="1" max="5"
+                                        value={{data.avgRating}}>
+                                    <label id="rangeText"></label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card card-primary">
+                            <!-- /.card-header -->
+                            <!-- form start -->
+                            <div class="card-header">
+                                <div class="card-title">Vairant</div>
+                                <div class="card-tools">
+                                    <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        
+                            <div class="card-body ">
+                                
+                        
+                            </div>
+                        </div>
+                        
+                    </div>
+                   <div class="col-md-3">
+                    <div class="card card-primary">
+                        <!-- /.card-header -->
+                        <!-- form start -->
+                        <div class="card-header">
+                            <div class="card-title">Toggles</div>
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="card-body ">
+                            <div class="row">
+
+                                <div class="col-md-6"><label for="status">Status</label></div>
+                                <div class="col-md-6"><select class="form-control" name="status" id="status">
+                                        <option value=True>True</option>
+                                        <option value=False>False</option>
+                                    </select></div>
+
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-md-6"><label for="isFeatured">Featured</label></div>
+                                <div class="col-md-6">
+                                    <select class="form-control" name="isFeatured" id="featured">
+                                        <option value=True>True</option>
+                                        <option value=False>False</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-md-6"><label for="isDeliverable">Deliverable</label></div>
+                                <div class="col-md-6">
+                                    <select class="form-control" name="isDeliverable" id="deliverable">
+                                        <option value=True>True</option>
+                                        <option value=False>False</option>
+                                    </select>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                    <div class="card card-primary">
+                        <!-- /.card-header -->
+                        <!-- form start -->
+                        <div class="card-header">
+                            <div class="card-title">Attributes</div>
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="card-body ">
+
+                            <div class="row">
+                                <label>Item Category</label>
+                                <select class="form-control" name="category" id="category">
+                                    {% for cat in itemcat%}
+                                    <option value={{cat.id}}>{{cat.title}}</option>
+                                    {%endfor%}
+                                </select>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="card card-primary">
+                            <!-- /.card-header -->
+                            <!-- form start -->
+                            <div class="card-header">
+                                <div class="card-title">Nutrition</div>
+                                <div class="card-tools">
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-primary">
+                                        <i class="fas fa-plus"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-tool" data-card-widget="collapse"
+                                        title="Collapse">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="card-body ">
+                                <div class="row">
+                                    {{uni_nutrition}}
+                                    {% comment %} {% for nut in uni_nutrition %}
+                                    <div class="form-group col-md-4">
+                                        <input type="checkbox" id="nut" name="nut" value="{{nut.id}}">
+                                        <label for="nut"> {{nut.title}}</label><br>
+                                    </div> {% endcomment %}
+                                    {% comment %} {% endfor %} {% endcomment %}
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card card-primary">
+                            <!-- /.card-header -->
+                            <!-- form start -->
+                            <div class="card-header">
+                                <div class="card-title">Extra</div>
+                                <div class="card-tools">
+                                    <button type="button" class="btn btn-tool" data-card-widget="collapse"
+                                        title="Collapse">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="card-body ">
+                                <div class="row">
+                                    {% for extra in extras %}
+                                    <div class="form-group col-md-4">
+                                        <input type="checkbox" id="extra" name="extra" value="{{extra.id}}">
+                                        <label for="extra"> {{extra.title}}</label><br>
+                                    </div>
+                                    {% endfor %}
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+
+
+        </form>
+    </section>
+    <div class="modal fade" id="modal-primary" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content bg-primary">
+                <div class="modal-header">
+                    <h4 class="modal-title">Add Nutrition</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                        <form unicorn:submit.prevent="add">
+                            <input type="text" unicorn:model.lazy="task" placeholder="New task" id="task"></input>
+                        </form>
+                
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-outline-light" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-outline-light">Save changes</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+</div>
+
+<script>
+
+    var rangeValues =
+    {
+        "1": "1",
+        "2": "2",
+        "3": "3",
+        "4": "4",
+        "5": "5"
+    };
+
+
+
+    $(function () {
+
+        // on page load, set the text of the label based the value of the range
+        $('#rangeText').text(rangeValues[$('#rangeInput').val()]);
+
+        // setup an event handler to set the text when the range value is dragged (see event for input) or changed (see event for change)
+        $('#rangeInput').on('input change', function () {
+            $('#rangeText').text(rangeValues[$(this).val()]);
+        });
+
+    });
+</script>
+
+{% endblock content %}

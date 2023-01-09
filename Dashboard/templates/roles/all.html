@@ -1,0 +1,58 @@
+{% extends 'index.html' %} {% block content %}
+
+<div class="content-wrapper">
+  <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1 class="m-0">All Users</h1>
+        </div>
+        <!-- /.col -->
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="#">user</a></li>
+            <li class="breadcrumb-item active">all</li>
+          </ol>
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+  </div>
+  <section class="content">
+    <div class="container-fluid">
+      <table class="table table-hover table-head-fixed text-nowrap">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+        
+          {% for obj in data %}
+          <tr>
+            <td>{{ obj.name }}</td>
+            
+            
+            <td>
+              <a href="{% url 'role-update' id=obj.id %}"
+                ><button type="button" class="btn btn-sm btn-primary">
+                  <i class="fas fa-edit"></i>&nbspEdit
+                </button></a
+              >
+              <a href="{% url 'role-delete' id=obj.id %}"
+                ><button type="button" class="btn btn-sm btn-danger">
+                  <i class="fas"></i>&nbspDelete
+                </button></a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </section>
+</div>
+
+{% endblock content %}

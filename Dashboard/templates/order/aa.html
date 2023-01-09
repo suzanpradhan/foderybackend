@@ -1,0 +1,78 @@
+{% extends 'index.html' %} {% block content %}
+
+<div class="content-wrapper">
+  <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1 class="m-0">All Order</h1>
+        </div>
+        <!-- /.col -->
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="#">order</a></li>
+            <li class="breadcrumb-item active">all</li>
+          </ol>
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+  </div>
+  
+  <section class="content">
+    <div class="container-fluid">
+    <div class="tab">
+  <button class="tablinks" onclick="openCity(event, 'London')">London</button>
+  <button class="tablinks" onclick="openCity(event, 'Paris')">Paris</button>
+  <button class="tablinks" onclick="openCity(event, 'Tokyo')">Tokyo</button>
+</div>
+    <div>
+      <table class="table table-hover table-head-fixed text-nowrap">
+        <thead>
+          <tr>
+            <th>Description</th>
+            <th>User</th>
+            <th>Identifier</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for obj in data %}
+          <tr>
+            <td>{{ obj.description }}</td>
+            <td>{{ obj.user.email }}</td>
+            <td>
+              <select class="form-control" disabled name="status" id="status{{obj.id}}">
+                <option value="1">Pending</option>
+                <option value="2">Delivering</option>
+                <option value="3">Delivered</option>
+              </select>
+            </td>
+            <td>{{ obj.identifier }}</td>
+            <td>
+              <a href="{% url 'order-update' id=obj.id %}"><button type="button" class="btn btn-sm btn-primary">
+                  <i class="fas fa-edit"></i>&nbspView
+                </button></a>
+              <a href="{% url 'order-delete' id=obj.id %}"><button type="button" class="btn btn-sm btn-danger">
+                  <i class="fas"></i>&nbspDelete
+                </button></a>
+            </td>
+          </tr>
+          <script>
+            var temp = '{{obj.status}}';
+            var mySelect = document.getElementById("status{{obj.id}}");
+            mySelect.value = temp;
+          </script>
+          {% endfor %}
+        </tbody>
+      </table>
+      </div>
+    </div>
+  </section>
+</div>
+
+
+
+{% endblock content %}

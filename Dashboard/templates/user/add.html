@@ -1,0 +1,91 @@
+{% extends 'index.html' %} {% block content %}
+
+<div class="content-wrapper">
+  <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1 class="m-0">Add User</h1>
+        </div>
+        <!-- /.col -->
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="#">user</a></li>
+            <li class="breadcrumb-item active">add</li>
+          </ol>
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+  </div>
+  <section class="content">
+    <div class="container-fluid">
+      <!-- /.card-header -->
+      <!-- form start -->
+      <form action="{% url 'user-add' %}" method="POST">
+        {% csrf_token %}
+        <div class="row">
+          <div class="col-8">
+            <div class="card card-primary">
+              <div class="card-body">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">First Name</label>
+                  <input type="text" class="form-control" name="fname" placeholder="Enter first name">
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Last Name</label>
+                  <input type="text" class="form-control" name="lname" placeholder="Enter last name">
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Email address</label>
+                  <input type="email" class="form-control" name="email" placeholder="Enter email">
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Username</label>
+                  <input type="text" class="form-control" name="username" placeholder="Enter Username">
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputPassword1">Password</label>
+                  <input type="password" class="form-control" name="password" placeholder="Password">
+                </div>
+                
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Phone</label>
+                  <input type="text" class="form-control" name="phone" placeholder="Enter Phone">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-4">
+            <div class="card">
+              <div class="card-header">Role</div>
+              <div class="card-body">
+                <div class="form-group">
+                  <label>Role</label>
+                  <select class="form-control" name='group'>
+                    <option value='su_admin'>Admin</option>
+                    <option value='manager'>Store Manager</option>
+                    <option value='staff'>Staff</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+
+    </div>
+    <!-- /.card-body -->
+
+    <div class="card-footer">
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+    </form>
+  </section>
+</div>
+
+{% endblock content %}

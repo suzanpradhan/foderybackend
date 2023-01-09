@@ -1,0 +1,6 @@
+{
+    "python.analysis.extraPaths": [
+        "./sweed"
+    ],
+    "python.formatting.provider": "black"
+}

@@ -1,0 +1,72 @@
+{% extends 'index.html' %} {% block content %}
+
+<div class="content-wrapper">
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0">Add Role</h1>
+                </div>
+                <!-- /.col -->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">role</a></li>
+                        <li class="breadcrumb-item active">add</li>
+                    </ol>
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+    </div>
+    <section class="content">
+        <div class="container-fluid">
+            <div class="card card-primary">
+                <!-- /.card-header -->
+                <!-- form start -->
+                <form action="{% url 'role-add' %}" method="POST">
+                    {% csrf_token %}
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Name</label>
+                            <input type="text" class="form-control" name="role" placeholder="Enter Role Name" />
+                        </div>
+                    </div>
+                    <!-- /.card-body -->
+                
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        {% for user in users %}
+                        <div class="form-group col-md-3">
+                            <input type="checkbox" id="user" name="user" value="{{user.id}}">
+                            <label for="user"> {{user.email}}</label><br>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+
+                    <div class="row">
+                        {% for perm in perms %}
+                        <div class="form-group col-md-3">
+                            <input type="checkbox" id="perm" name="perm" value="{{perm.id}}">
+                            <label for="perm"> {{perm.name}}</label><br>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <div class="card-footer">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </section>
+</div>
+
+{% endblock content %}

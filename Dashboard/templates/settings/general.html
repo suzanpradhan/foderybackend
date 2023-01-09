@@ -1,0 +1,404 @@
+{% extends 'index.html' %} {% block content %}
+
+<div class="content-wrapper">
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0">App Settings</h1>
+                </div>
+                <!-- /.col -->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">settings</a></li>
+                        <li class="breadcrumb-item active">general</li>
+                    </ol>
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+    </div>
+    <section class="content">
+        {% csrf_token %}
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-8">
+                    <form action="{% url 'app-setting' %}" method="POST">
+                        {% csrf_token %}
+                        <div class="card card-primary">
+                            <!-- /.card-header -->
+                            <!-- form start -->
+                            <div class="card-header">
+                                <div class="card-title">General</div>
+                                <div class="card-tools">
+                                    <button type="button" class="btn btn-tool" data-card-widget="collapse"
+                                        title="Collapse">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label for="title">App Name</label>
+                                    <input type="text" class="form-control" id="appName" name="appName"
+                                        value="{{setting.appName}}" placeholder="Enter App Name" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputDescription">Description</label>
+                                    <textarea id="inputDescription" name="shortDescription" class="form-control"
+                                        rows="4" placeholder="Enter Description">{{setting.shortDescription}}</textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="price">Terms</label>
+                                    <input type="text" class="form-control" id="terms" name="terms"
+                                        value="{{setting.terms}}" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="price">Privacy</label>
+                                    <input type="text" class="form-control" id="privacy" name="privacy"
+                                        value="{{setting.privacy}}" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="price">About Us</label>
+                                    <input type="text" class="form-control" id="aboutUs" name="aboutUs"
+                                        value="{{setting.aboutUs}}" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="price">Version Number</label>
+                                    <input type="text" class="form-control" id="versionNumber" name="versionNumber"
+                                        value="{{setting.versionNumber}}" />
+                                </div>
+
+
+                            </div>
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+                <div class="col-md-3">
+                    <div class="col-md-12">
+                        <form action="{% url 'tax' %}" method="POST">
+                            {% csrf_token %}
+                            <div class="card card-primary">
+                                <!-- /.card-header -->
+                                <!-- form start -->
+
+                                <div class="card-header">
+                                    <div class="card-title">Additional</div>
+                                    <div class="card-tools">
+                                        <button type="button" class="btn btn-tool" data-card-widget="collapse"
+                                            title="Collapse">
+                                            <i class="fas fa-minus"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label for="status">Tax %</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input type="text" class="form-control" id="tax" name="tax"
+                                                placeholder="Enter Tax %" value="{{tax.value}}" />
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label for="status">Currency</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <select class="form-control" name="currency" id="currency">
+                                                {% for currency in currencies%}
+
+                                                <option value="{{currency.id}}"
+                                                    {% if setting.currency.id == currency.id %} selected {% endif %}>
+                                                    {{currency.symbol}}</option>
+                                                {%endfor%}
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="card-footer">
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <div class="card-title">Shipping Zone</div>
+                        <div class="card-tools">
+                            
+                            </button>
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-hover table-head-fixed text-nowrap">
+                            <thead>
+                                <tr>
+                                    <th>City</th>
+                                    <th>ShippingClass</th>
+                                    <th>ZipCode</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <form action="{% url 'zone-add'%}" method="POST">
+                                    {% csrf_token %}
+
+                                <tr>
+                                    <td>
+                                        <select class='form-control' name='city_id'>
+                                            {% for city in cities %}
+                                            <option value="{{city.id}}">{{city.title}}</option>
+                                            {%endfor%}
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <div class="form-group">
+                                            <select class="select2" id="select" multiple="multiple" name="shippingClass"
+                                                data-placeholder="Select a State" style="background-color: black; width: 100%;">
+                                                {% for ship in shippingclass%}
+                                                <option value={{ship.id}}>{{ship.label}}</option>
+                                                {%endfor%}
+                                            </select>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" id="zipcode" name="zipcode" value="{{obj.zipcode}}" />
+                                    </td>
+                                    <td>
+                                        <select class="form-control" name='status'>
+                                            <option value="False">False</option>
+                                            <option value="True">True</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                        
+                                    </td>
+                                </tr>
+                                </form>
+                            </tbody>
+                            <thead>
+                                
+                                <tr>
+                                    <th>City</th>
+                                    <th>ShippingClass</th>
+                                    <th>ZipCode</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for obj in data %}
+                                
+                                <form action="{% url 'zone-update' id=obj.id%}" method="POST">
+                                    {% csrf_token %}
+
+                                    <tr>
+                                        <td>
+                                            <select class='form-control' name='city_id'>
+                                                {% for city in cities %}
+                                                <option value="{{city.id}}">{{city.title}}</option>
+                                                {%endfor%}
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <div class="form-group">
+                                                <select class="select2" id="select{{obj.id}}" multiple="multiple" name="shippingClass"
+                                                    data-placeholder="Select a State" style="background-color: black; width: 100%;">
+                                                    
+                                                    {% for ship in shippingclass%}
+                                                    <option value={{ship.id}} {% if ship in obj.shippingClass.all %} selected {% endif %}>{{ship.label}}</option>
+                                                    {%endfor%}
+                                                </select>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <input type="text" class="form-control" id="zipcode" name="zipcode"
+                                                value="{{obj.zipcode}}" />
+                                        </td>
+                                        <td>
+                                            <select class="form-control" name='status'>
+                                                <option value="False">False</option>
+                                                <option value="True">True</option>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <button type="submit" class="btn btn-sm btn-primary">Submit</button>
+                                            <a href="{% url 'ship-delete' id=obj.id %}">
+                                                <button type="button" class="btn btn-sm btn-danger">
+                                                    <i class="fas"></i>&nbspDelete
+                                                </button></a>
+                                        </td>
+                                    </tr>
+                                </form>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="card card-primary">
+                    <!-- /.card-header -->
+                    <!-- form start -->
+
+                    <div class="card-header">
+                        <div class="card-title">Shipping Rules</div>
+                        <div class="card-tools">
+                            <button type="button" class="btn btn-tool" onclick="duplicateForm();">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="card-body">
+                        <div class="row" id='form-wrapper'>
+
+                            <div class="col-md-2"><label>Label</label></div>
+                            <div class="col-md-1"><label>Type</label></div>
+                            <div class="col-md-2"><label>Start</label></div>
+                            <div class="col-md-2"><label>End</label></div>
+                            <div class="col-md-2"><label>Price</label></div>
+                            <div class="col-md-1"><label>Priority</label></div>
+                            <div class="col-md-2"><label>Action</label></div>
+
+                            {% for shipping in shippingclass %}
+                            <form action="{% url 'ship-update' id=shipping.id%}" method="POST">
+                                {% csrf_token %}
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <input type="text" class="form-control" id="label" name="label"
+                                            value="{{shipping.label}}" />
+                                    </div>
+                                    <div class="col-md-1">
+                                        <select class="form-control" name='type'>
+                                            <option value=1>Weight</option>
+                                            <option value=2>Price</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <input type="text" class="form-control" id="start" name="start"
+                                            value="{{shipping.start}}" />
+                                    </div>
+                                    <div class="col-md-2">
+                                        <input type="text" class="form-control" id="end" name="end"
+                                            value="{{shipping.end}}" />
+                                    </div>
+                                    <div class="col-md-2">
+                                        <input type="text" class="form-control" id="price" name="price"
+                                            value="{{shipping.price}}" />
+                                    </div>
+                                    <div class="col-md-1">
+                                        <input type="text" class="form-control" id="priority" name="priority"
+                                            value="{{shipping.priority}}" />
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <button type="submit" class="btn btn-sm btn-primary">Submit</button>
+                                            <a href="{% url 'ship-delete' id=shipping.id %}">
+                                                <button type="button" class="btn btn-sm btn-danger">
+                                                    <i class="fas"></i>&nbspDelete
+                                                </button></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+        {% comment %} </form> {% endcomment %}
+    </section>
+</div>
+
+<script>
+    const div = document.getElementById('form-wrapper');
+
+    function duplicateForm() {
+        var html = `
+                                    <form action="{% url 'ship-add' %}" method="POST">
+                                        {% csrf_token %}
+                                        <div class="row">
+                                        <div class="col-md-2">
+                                            <input type="text" class="form-control" id="label" name="label"
+                                                 />
+                                        </div>
+                                        <div class="col-md-1">
+                                            <select class="form-control" name='type'>
+                                                <option value=1>Weight</option>
+                                                <option value=2>Price</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <input type="text" class="form-control" id="start" name="start"
+                                                 />
+                                        </div>
+                                        <div class="col-md-2">
+                                            <input type="text" class="form-control" id="end" name="end"
+                                             />
+                                        </div>
+                                        <div class="col-md-2">
+                                            <input type="text" class="form-control" id="price" name="price"
+                                                 />
+                                        </div>
+                                        <div class="col-md-1">
+                                            <input type="text" class="form-control" id="priority" name="priority"
+                                                 />
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="form-group">
+                                                <button type="submit" class="btn btn-primary">Submit</button>
+                                            </div>
+                                        </div>
+                                        </div>
+                                    </form>`;
+        div.innerHTML += html;
+    }
+</script>
+{% block end-scripts%}
+<script>
+    $(document).ready(function () {
+        $('#select').select2();
+        {% for obj in data %}
+            $('#select{{obj.id}}').select2();
+        {% endfor %}
+    });
+    $(function () {
+        //Initialize Select2 Elements
+        
+        // $('#select3').select2()
+
+        //Initialize Select2 Elements
+
+    })
+</script>
+{%endblock%}
+{% endblock content %}

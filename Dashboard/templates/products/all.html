@@ -1,0 +1,82 @@
+{% extends 'index.html' %} {% block content %}
+
+<div class="content-wrapper">
+  <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1 class="m-0">All Products</h1>
+        </div>
+        <!-- /.col -->
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="#">products</a></li>
+            <li class="breadcrumb-item active">all</li>
+          </ol>
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+  </div>
+  <section class="content">
+    <div class="container-fluid">
+      <table class="table table-hover table-head-fixed text-nowrap">
+        <thead>
+          <tr>
+            <th>Image</th>
+            <th>Title</th>
+            <th>Featured</th>
+            <th>Status</th>
+            <th>Price</th>
+            <th>Rating</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for obj in data %}
+          <tr>
+            <td><img src= {{ obj.coverImage.file.url }} width='100' height='100'></td>
+            <td>{{ obj.title }}</td>
+            <td>
+              <select class="form-control" disabled name="isfeatured" id="featured{{obj.id}}">
+                <option value=True>True</option>
+                <option value=False>False</option>
+              </select>
+            </td>
+            <td>
+              <select class="form-control" disabled name="status" id="status{{obj.id}}">
+                <option value=True>True</option>
+                <option value=False>False</option>
+              </select>
+            </td>
+            <td>{{ obj.newPrice }}</td>
+            <td>{{ obj.avgRating }}</td>
+            <td>
+              <a href="{% url 'product-update' id=obj.id %}"><button type="button" class="btn btn-sm btn-primary">
+                  <i class="fas fa-edit"></i>&nbspView
+                </button></a>
+              <a href="{% url 'product-delete' id=obj.id %}"><button type="button" class="btn btn-sm btn-danger">
+                  <i class="fas"></i>&nbspDelete
+                </button></a>
+            </td>
+          </tr>
+          <script>
+            var temp = '{{obj.status}}';
+            var temp1 = '{{obj.isFeatured}}';
+            var mySelect = document.getElementById("status{{obj.id}}");
+            var mySelect1 = document.getElementById("featured{{obj.id}}");
+            mySelect.value = temp;
+            mySelect1.value=temp1;
+          </script>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </section>
+</div>
+
+
+
+{% endblock content %}

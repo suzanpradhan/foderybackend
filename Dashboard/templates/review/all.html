@@ -1,0 +1,91 @@
+{% extends 'index.html' %} {% block content %}
+
+<div class="content-wrapper">
+  <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1 class="m-0">All Review</h1>
+        </div>
+        <!-- /.col -->
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="#">review</a></li>
+            <li class="breadcrumb-item active">all</li>
+          </ol>
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+  </div>
+  <section class="content">
+    <div class="container-fluid">
+      <table class="table table-hover table-head-fixed text-nowrap">
+        <thead>
+          <tr>
+            <th>User</th>
+            <th>Food</th>
+            <th>Rating</th>
+            <th>Featured</th>
+            <th>Description</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for obj in data %}
+          <tr>
+              <form action="{% url 'review-update' id=obj.id %}" method="POST">
+            {% csrf_token %}
+            <td>{{ obj.user.email }}</td>
+            <td>{{ obj.food.title }}</td>
+            <td>{{ obj.rate }}</td>
+            <td>
+              <select
+                class="form-control"
+                name="isfeatured"
+                id="featured{{obj.id}}"
+              >
+              <option value="">_</option>
+                <option value="True" {% if obj.isFeatured %}selected{% endif %} >True</option>
+                <option value="False" {% if not obj.isFeatured %}selected{% endif %} >False</option>
+              </select>
+            </td>
+            <td
+              style="
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+              "
+            >
+              {{ obj.description }}
+            </td>
+
+            <td>
+              {% comment %} <a href="{% url id=obj.id %}" >{% endcomment %}
+                <button type="submit" class="btn btn-primary">
+
+                  <i class="fas fa-edit"></i>&nbspSave
+                </button></a>
+              <a href="{% url 'review-delete' id=obj.id %}">
+                  <button type="button" class="btn btn-sm btn-danger">
+                  <i class="fas"></i>&nbspDelete
+                </button></a
+              >
+            </td>
+        </form>
+          </tr>
+          <script>
+            {% comment %} var temp1 = "{{obj.isFeatured}}";
+            var mySelect1 = document.getElementById("featured{{obj.id}}");
+            mySelect1.value = temp1; {% endcomment %}
+          </script>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </section>
+</div>
+
+{% endblock content %}
