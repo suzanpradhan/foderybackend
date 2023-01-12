@@ -27,7 +27,7 @@ class LoginView(UnicornView):
             self.call("fireError", "User not found.")
         elif not user.check_password(self.password):
             self.call("fireError", "Wrong password.")
-        elif not user.groups.filter(name="lords").exists():
+        elif not user.groups.filter(name="admin").exists():
             self.call("fireError", "Not Authorized.")
         elif not user.is_active or not user.is_staff:
             self.call("fireError", "Your account has been blocked. Please contact an administrator.")

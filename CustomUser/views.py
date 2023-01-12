@@ -34,7 +34,7 @@ from General.models import Review
 from General.serilaizers import ReviewSerializer
 from Order.models import Cart, Order
 from Settings.models import Reward, User_Coupons
-from sweed.decorator import check_token
+from fodery.decorator import check_token
 from .utils import generate_access_token, generate_refresh_token
 from CustomUser.serializer import (
     AddressSerializer,
@@ -45,7 +45,7 @@ from CustomUser.serializer import (
     UserSerializer,
 )
 from django.core.mail import send_mail
-from sweed import settings
+from fodery import settings
 import jwt
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework import generics, mixins, serializers
@@ -124,7 +124,7 @@ def encrypt(payload):
 
 def smtp(payload, email, base_url:str, username: str):       
     token = encrypt({"user": payload})
-    subject = "Sweed - Email Verification"
+    subject = "Fodery - Email Verification"
     message = (
         "Hello, "
         + " Please click on this link to activate your account: "
@@ -137,61 +137,6 @@ def smtp(payload, email, base_url:str, username: str):
     msg=EmailMultiAlternatives(subject,message,settings.EMAIL_HOST_USER,[recepient])
     msg.attach_alternative(html_context,"text/html")
     msg.send()
-
-# class smtp(APIView):
-#     def post(self,request, *args, **kwargs):
-#         payload=request.data.get('payload')
-#         email=request.data.get('email')
-        
-#         token = encrypt({"user": payload})
-#         subject = "Welcome to Sweed."
-#         message = (
-#             "Hello, "
-#             + " Please click on this link to activate your account: "
-#             + "http://127.0.0.1:8000/user/activate/?token="
-#             + str(token)
-#         )
-#         html_context='''
-#                 <html>
-#                 <head>
-#                     <style>
-#                         button {
-#                           border-radius: 3px;
-#                         transition: 0.2s;
-#                         width:100px;
-#                         background-color: #555555;
-#                         height:50px;
-#                         }
-
-#                         button:hover {
-#                         box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
-#                         background-color: aliceblue;
-#                         }
-#                         button:hover a{
-                        
-#                         color: #555555;
-#                         }
-
-#                         a{
-#                           text-decoration: none;
-#                           color: aliceblue;}
-                        
-#                     </style>
-#                     </head>
-#                     <body>
-#                         <img src="https://i.pinimg.com/originals/78/f6/88/78f688d715c5432bd1020b47fecd9fe6.gif" >
-#                         <button type="button" ><a href="http://127.0.0.1:8000/user/activate/?token='''+str(token)+'''"> Activate </a></button>
-                    
-#                     </body>
-                    
-#                 </html>
-#                 '''
-#         recepient = email
-#         msg=EmailMultiAlternatives(subject,message,'no-reply@kurmatechnepal.com',[recepient])
-#         msg.attach_alternative(html_context,"text/html")
-#         msg.send()
-#         return HttpResponse((payload,email))
-
 
 @csrf_exempt
 def smtpChangePw(payload, email):
@@ -212,38 +157,6 @@ def smtpChangePw(payload, email):
     print(message)
     print(token)
     recepient = email
-    # send_mail(
-    #     subject, message, settings.EMAIL_HOST_USER, [recepient], fail_silently=False
-    # )
-
-# def orderEmailTesting(payload, email, base_url:str):       
-#     token = encrypt({"user": payload})
-#     subject = "Welcome to Sweed."
-#     message = (
-#         "Hello, "
-#         + " Please click on this link to activate your account: "
-#         + f"{base_url}/user/activate/?token="
-#         + str(token)
-#     )
-#     testOrder = Order.objects.first()
-#     html_context=get_order_placed_html(order=testOrder)
-#     recepient = email
-#     print(base_url)
-#     msg=EmailMultiAlternatives(subject,message,settings.EMAIL_HOST_USER,[recepient])
-#     msg.attach_alternative(html_context,"text/html")
-#     msg.send()
-
-# @method_decorator(check_token, name="dispatch")
-# class TestEmailApi(APIView):
-#     def get(self, request, *args, **kwargs):
-#         email = self.kwargs["user"].email
-
-#         if email is None: 
-#             raise exceptions.NotAcceptable("Email is required.")
-#         else:
-#             print(request.get_host())
-#             orderEmailTesting(self.kwargs["user"].id, "sweedfoodofficial@gmail.com", request.get_host())
-#             return Response(data="success")
 
 class ForgetPasswordBeta(APIView):
     def post(self, request, *args, **kwargs):
@@ -255,12 +168,12 @@ class ForgetPasswordBeta(APIView):
         if user is None:
             raise exceptions.NotFound("User not found!")
 
-        subject = "Password Reset Requested - Sweed"
+        subject = "Password Reset Requested - c"
         email_template_name = "templates/password_reset_email.txt"
         c = {
         "email":user.email,
         'domain':request.get_host(),
-        'site_name': 'Sweed App',
+        'site_name': 'smtp App',
         "uid": base64.urlsafe_b64encode(force_bytes(user.pk)).decode(),
         "user": user,
         'token': default_token_generator.make_token(user),
@@ -742,7 +655,7 @@ from django.shortcuts import HttpResponseRedirect
 
 # The url where the google oauth should redirect
 # after a successful login.
-REDIRECT_URI = 'http://backend.sweedapp.com/user/google/callback/'
+REDIRECT_URI = 'https://fod.suzanpradhan.com.np/user/google/callback/'
 # REDIRECT_URI = 'exp://192.168.1.73:19000'
 
 
@@ -792,10 +705,10 @@ def CallbackGoogleSignin(request):
             login(request, user)
             access_token = generate_access_token(user)
             refresh_token = generate_refresh_token(user)
-            HttpResponseRedirect.allowed_schemes.append('sweed')
-            print(f"sweed://?access_token={access_token}&refresh_token={refresh_token}")
-            # return HttpResponseRedirect(f"sweed://?access_token={access_token}&refresh_token={refresh_token}")
-            return HttpResponseRedirect(f"sweed://?access_token={access_token}&refresh_token={refresh_token}")
+            HttpResponseRedirect.allowed_schemes.append('foodery')
+            print(f"foodery://?access_token={access_token}&refresh_token={refresh_token}")
+            # return HttpResponseRedirect(f"foodery://?access_token={access_token}&refresh_token={refresh_token}")
+            return HttpResponseRedirect(f"foodery://?access_token={access_token}&refresh_token={refresh_token}")
 
         return HttpResponseBadRequest("Login Failed")
     except google_apis_oauth.InvalidLoginException:
@@ -933,7 +846,7 @@ class VerifyUserPhone(APIView):
                 params = {
                     'auth_token': settings.AAKASH_SMS_TOKEN,
                     'to': phone,
-                    'text': f"Your Sweed OTP code is {token}"
+                    'text': f"Your Fodery OTP code is {token}"
                 }
                 url += '?' + urlencode(params, quote_via=quote_plus)
                 print(url)
@@ -1003,7 +916,7 @@ class TestVerifyUserPhone(APIView):
                 params = {
                     'auth_token': settings.AAKASH_SMS_API_BASE_URL,
                     'to': phone,
-                    'text': f"Your Sweed OTP code is {token}"
+                    'text': f"Your Fodery OTP code is {token}"
                 }
                 url += '?' + urlencode(params, quote_via=quote_plus)
                 # dataResponse = requests.get(url)

@@ -16,7 +16,7 @@ from General.serilaizers import AdSerializer, CitySerializer, CountrySerializer,
 from Products.models import Favorite
 from Products.serializers.feed_item_detail_serializer import FeedSerializer
 from Products.serilaizers import HomePageItemSerializer
-from sweed.decorator import check_token
+from fodery.decorator import check_token
 from django.http.response import (
     HttpResponse,
     HttpResponseBadRequest,

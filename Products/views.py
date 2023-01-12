@@ -14,8 +14,8 @@ from General.models import MediaFile, Review
 from Order.serializer import CartItemSerializer
 from Products.helpers import ProductHelper
 from Products.serializers.feed_item_detail_serializer import ItemCollectionSerializer
-from sweed.decorator import check_token
-from sweed import settings
+from fodery.decorator import check_token
+from fodery import settings
 from .models import (
     Collection,
     Extra,

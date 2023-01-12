@@ -306,7 +306,7 @@ def get_order_placed_html(order: Order):
 
 																			
 																			<img
-																				src="http://backend.sweedapp.com/media/new_order.png"
+																				src="https://fod.suzanpradhan.com.np/media/new_order.png"
 																				style="display: block; height: auto; border: 0; width: 285px; max-width: 100%;"
 																				width="285" /></div>
 																	</td>
@@ -562,12 +562,12 @@ def make_verification_email(verification_link: str, username=str):
 																	<td
 																		style="width:100%;padding-right:0px;padding-left:0px;padding-top:15px;">
 																		<div align="center" style="line-height:10px"><a
-																				href="http://sweedapp.com"
+																				href="https://fod.suzanpradhan.com.np"
 																				style="outline:none" tabindex="-1"
 																				target="_blank"><img alt="Placeholder logo"
-																					src="http://backend.sweedapp.com/media/email_cover.png"
+																					src="https://fod.suzanpradhan.com.np/media/email_cover.png"
 																					style="display: block; height: auto; border: 0; width: 100%; max-width: 100%;"
-																					title="Sweed Logo" width="70" /></a>
+																					title="Fodery Logo" width="70" /></a>
 																		</div>
 																	</td>
 																</tr>
@@ -694,7 +694,7 @@ def make_verification_email(verification_link: str, username=str):
 																					style="margin: 0; font-size: 14px; mso-line-height-alt: 16.8px;">
 																					 </p>
 																				<p style="margin: 0; color: #ffffff;">Thank you for joining
-																					Sweed Family. To get access to your account
+																					Foodery. To get access to your account
 																					please verify your email address by clicking
 																					the link below.</p>
 																				<p style="margin: 0; color: #ffffff;">or you can activate by
@@ -746,24 +746,10 @@ def make_verification_email(verification_link: str, username=str):
 																					 </p>
 																				<p style="margin: 0; color: #ffffff;">Best Regards,</p>
 																				<p style="margin: 0;"><span
-																						style="color:#ffffff;"><strong>Sweed |
+																						style="color:#ffffff;"><strong>Fodery |
 																							Developer Team</strong></span></p>
 																			</div>
 																		</div>
-																	</td>
-																</tr>
-															</table>
-															<table border="0" cellpadding="0" cellspacing="0"
-																class="image_block" role="presentation"
-																style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;"
-																width="100%">
-																<tr>
-																	<td style="width:100%;padding-right:0px;padding-left:0px;">
-																		<div align="center" style="line-height:10px"><img
-																				alt="Sweed Graphic Image"
-																				class="big" src="http://backend.sweedapp.com/media/sweed_graphic_image.png"
-																				style="display: block; height: auto; border: 0; width: 605px; max-width: 100%;"
-																				width="605" /></div>
 																	</td>
 																</tr>
 															</table>
@@ -859,26 +845,26 @@ def make_verification_email(verification_link: str, username=str):
 																			width="126px">
 																			<tr>
 																				<td style="padding:0 5px 0 5px;"><a
-																						href="https://www.facebook.com/sweedfoodofficial"
+																						href="https://www.facebook.com"
 																						target="_blank"><img alt="Facebook"
 																							height="32"
-																							src="http://backend.sweedapp.com/media/facebook2x.png"
+																							src="https://fod.suzanpradhan.com.np/media/facebook2x.png"
 																							style="display: block; height: auto; border: 0;"
 																							title="Facebook" width="32" /></a>
 																				</td>
 																				<td style="padding:0 5px 0 5px;"><a
-																						href="https://twitter.com/sweedfoods"
+																						href="https://twitter.com"
 																						target="_blank"><img alt="Twitter"
 																							height="32"
-																							src="http://backend.sweedapp.com/media/twitter2x.png"
+																							src="https://fod.suzanpradhan.com.np/media/twitter2x.png"
 																							style="display: block; height: auto; border: 0;"
 																							title="Twitter" width="32" /></a>
 																				</td>
 																				<td style="padding:0 5px 0 5px;"><a
-																						href="https://www.instagram.com/sweedfoodofficial/"
+																						href="https://www.instagram.com"
 																						target="_blank"><img alt="Instagram"
 																							height="32"
-																							src="http://backend.sweedapp.com/media/instagram2x.png"
+																							src="https://fod.suzanpradhan.com.np/media/instagram2x.png"
 																							style="display: block; height: auto; border: 0;"
 																							title="Instagram" width="32" /></a>
 																				</td>
@@ -903,15 +889,15 @@ def make_verification_email(verification_link: str, username=str):
 																					style="margin: 0; text-align: center; mso-line-height-alt: 14.399999999999999px;">
 																					 </p>
 																				<p style="margin: 0; text-align: center;">
-																					Copyright © 2021 Sweed Services, All rights
+																					Copyright © 2021 Fodery Inc, All rights
 																					reserved.</p>
 																				<p
 																					style="margin: 0; text-align: center; mso-line-height-alt: 14.399999999999999px;">
 																					 </p>
 																				<p style="margin: 0; text-align: center;">This
-																					email was sent to you by Sweed Service. By
+																					email was sent to you by Fodery. By
 																					using our services, you agree to our <a
-																						href="http://sweedapp.com"
+																						href="https://fod.suzanpradhan.com.np"
 																						rel="noopener" style="color: #ffffff;"
 																						target="_blank">Terms and
 																						agreements</a>.</p>

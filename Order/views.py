@@ -27,10 +27,10 @@ from Products.serilaizers import CartItemSerializer
 from Settings.models import Coupons, OrderInfo, Reward, Tax, User_Coupons, appSettings
 from django.forms.models import model_to_dict
 from django.db.models import Q
-from sweed.decorator import check_token
+from fodery.decorator import check_token
 from django.core.mail.message import EmailMultiAlternatives
 import jwt
-from sweed import settings
+from fodery import settings
 import datetime
 
 
@@ -39,7 +39,7 @@ import datetime
 class createOrder(APIView):
 
     def orderUpdateToEmail(self, order: Order): 
-        subject = "Sweed - New Order Has Been Placed!"
+        subject = "Fodery - New Order Has Been Placed!"
         message = "New Order Has Been Placed!"
         html_context=get_order_placed_html(order=order)
         recepient = settings.ORDER_UPDATES_EMAIL
@@ -271,7 +271,7 @@ class createOrder(APIView):
             model_obj.billNo=bill_instance.billNo
             model_obj.receiptNo=bill_instance.receiptNo
             model_obj.save()
-            self.orderUpdateToEmail(order=model_obj)
+            # self.orderUpdateToEmail(order=model_obj)
 
             # for Cashback Reward
             # rewardInts,created=Reward.objects.get_or_create(user=self.kwargs['user'])

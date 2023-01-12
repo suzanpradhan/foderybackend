@@ -12,7 +12,7 @@ from datetime import datetime
 from django.utils import timezone as time
 
 from CustomUser.models import UserProfile
-from sweed.decorator import check_token
+from fodery.decorator import check_token
 from .models import FAQ, AppNotificaiton, AppNotificaitonUser, Coupons, FAQCategory, MaintainanceMode, Reward, RewardCollection, RewardCoupon, User_Coupons, appSettings
 from .serializers import AppNotificationSerializer, AppNotificationUserSerializer, CouponSerializer, FAQCategorySerializer, FAQSerializer, GetAboutSerializer, GetPrivacySerializer, GetTermSerializer, MultipleFAQSerializer
 from django.views.generic import TemplateView
