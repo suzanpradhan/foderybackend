@@ -314,16 +314,7 @@ class Register(APIView):
             cartInts = Cart()
             cartInts.user = user
             cartInts.save()
-            print("kjhfgfxchgjhkgjhliuiyf")
-            print(request.get_host() + "helajhljgasl")
-            smtp(user.pk, email, base_url=request.get_host(), username=user.profile_full_name())
-
-            # if refer:
-            #     obj=Refer.objects.filter(id=refer).first()
-            #     if not obj:
-            #         raise exceptions.NotFound('Invalid Refer.')
-            #     obj.referedTo=user
-            #     obj.save()
+            # smtp(user.pk, email, base_url=request.get_host(), username=user.profile_full_name())
 
             access_token = generate_access_token(user)
             refresh_token = generate_refresh_token(user)

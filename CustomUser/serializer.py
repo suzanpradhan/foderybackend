@@ -81,6 +81,7 @@ class ProfileSerializer(serializers.ModelSerializer):
         my_group.user_set.add(user_obj)
 
         # for user_da in user_data:
+        validated_data["isPhoneVerified"] = True
         profile = Profile.objects.create(user=user_obj, **validated_data)
 
         return profile
